@@ -1,0 +1,32 @@
+// Partiendo del ejemplo anterior de la rueda parametrizable, vamos a ver
+//     cómo poder generar estas figuras con valores por defecto. De este
+//     modo, no tendremos que llamar a todos los parámetros de entrada
+//     al invocar al módulo.
+
+// Especificamos que el parámetro grosor por defecto será 5mm, el diámetro por defecto 40mm y el diámetro del eje de 8mm
+module rueda_simple(grosor=5, diametro=40, diam_eje=8){
+    // Cilindro con agujero central
+    difference(){
+        // Cilindro exterior
+        cylinder(r=diametro/2, h=grosor, $fn=100);
+        // Cilindro taladro central.
+        cylinder(r=diam_eje/2, h=grosor*3, $fn=20, center=true);
+        // NOTA: Multiplicamos por 3 la altura para asegurar que se
+        //     atraviesa completamente la figura.
+        }
+    }
+    
+// Creamos una rueda simple sin parámetros usando valores por defecto):
+translate([50, 0, 0]){
+    rueda_simple();
+}
+
+// Añadimos una segunda rueda únicamente cambiando el grosor a 20
+translate([100, 0, 0]){
+    rueda_simple(grosor=20);
+}
+
+// Finalmente creamos otra rueda cambiando el grosor a 20
+translate([150, 0, 0]){
+    rueda_simple(grosor=20, diametro=20);
+}

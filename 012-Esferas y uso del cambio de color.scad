@@ -1,0 +1,30 @@
+//sphere(r= 20, $fn=100);
+
+// Vamos a realizar un ejemplo con esferas para visualizar la cuadrícula.
+
+d = 30; // Distancia de cada cuadro que conforma la cuadrícula.
+r = 2;  // Radio de la esfera.
+
+// Número de cuadrod
+N = 10;    // Número de cuadros de largo/ancho/alto
+
+size = N * d;
+
+// Dibujamos la cuadrícula. Para quitar la cuadrícula usamos el *
+translate([-size/2, -size/2, 0])
+for(ix =[0:N]){
+    for(iy = [0:N]){
+        translate([ix*d, iy*d, 0])
+        sphere(r = r, $fn=100);
+    }
+}
+
+// Dibujamos una esfera roja más grande en una posición de la cuadrícula
+translate([2*d, 3*d, 0])
+    color("red")
+    sphere(r=20, $fn=100);
+
+// Dibujamos un cubo en la posición -3,-4,0
+translate([-3*d, -4*d, 0])
+    color("blue")
+    cube([20,20,20], center=true);

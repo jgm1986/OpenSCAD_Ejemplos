@@ -1,0 +1,46 @@
+// En este ejemplo vamos a ver como utilizar los módulos externos en nuestra
+//     aplicación.
+
+// Importamos el fichero que tiene definido el módulo
+use <rueda_simple_lib.scad>
+
+// Con la libería de la rueda simple que hicimos en el ejemplo anterior,
+//     vamos a hacer una especie de coche:
+//rotate([0,0,0], center=true)
+rotate([0, -5, 0])
+union(){
+// Definimos el chasis
+translate([30,0,0])
+cube([100, 60, 10], center=true);
+
+// Definimos la rueda delantera izquierda del coche
+translate([0, -30, 0])
+rotate([90, 0, 0])
+    rueda_simple();
+    
+// Definimos la rueda trasera izquierda del coche
+translate([60, -30, 0])
+rotate([90, 0, 0])
+    rueda_simple(grosor=20, diametro=50);
+
+
+
+
+
+// Las Ruedas del lado derecho, son simétricas respecto al eje Y, por lo que aplicamos un
+//    mirroring de los mismos valores anteriores:
+mirror([0, 1, 0]){
+// Definimos la rueda delantera izquierda del coche
+translate([0, -30, 0])
+rotate([90, 0, 0])
+    rueda_simple();
+    
+    
+
+
+// Definimos la rueda trasera derecha del coche
+translate([60, -30, 0])
+rotate([90, 0, 0])
+    rueda_simple(grosor=20, diametro=50);
+}
+}
